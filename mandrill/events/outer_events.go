@@ -22,6 +22,11 @@ type WebhookEvent struct {
 	raw            json.RawMessage
 }
 
+//GetRawJSON returns the raw json of the request
+func (w *WebhookEvent) GetRawJSON() string {
+	return string(w.raw)
+}
+
 // parseOuterEvent parses the minimum amount of data from the
 // event to determine if it's a Sync event or a Message event
 // and the type of each
