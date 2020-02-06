@@ -87,6 +87,12 @@ func parseMessageEvent(e WebhookEvent) (MessageEvent, error) {
 		e := evt.(RejectEvent)
 		e.parse(d)
 		me.Data = e
+	case api.InboundMessageEvent:
+		if err := decoder.Decode(&d); err != nil {
+			return me, UnmarshallError{data: string(e.raw), msg: err.Error()}
+		}
+		e := evt.(InboundMessageEvent)
+		me.Data = e
 	}
 	return me, nil
 }

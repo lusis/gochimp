@@ -36,27 +36,29 @@ const (
 )
 
 var jsonMessageEventMapping = map[string]interface{}{
-	SendEventType:       api.SendMessageEvent{},
-	DeferralEventType:   api.DeferralMessageEvent{},
-	HardBounceEventType: api.HardBounceMessageEvent{},
-	SoftBounceEventType: api.SoftBounceMessageEvent{},
-	OpenEventType:       api.OpenMessageEvent{},
-	ClickEventType:      api.ClickMessageEvent{},
-	SpamEventType:       api.SpamMessageEvent{},
-	UnsubEventType:      api.UnsubMessageEvent{},
-	RejectEventType:     api.RejectMessageEvent{},
+	SendEventType:           api.SendMessageEvent{},
+	DeferralEventType:       api.DeferralMessageEvent{},
+	HardBounceEventType:     api.HardBounceMessageEvent{},
+	SoftBounceEventType:     api.SoftBounceMessageEvent{},
+	OpenEventType:           api.OpenMessageEvent{},
+	ClickEventType:          api.ClickMessageEvent{},
+	SpamEventType:           api.SpamMessageEvent{},
+	UnsubEventType:          api.UnsubMessageEvent{},
+	RejectEventType:         api.RejectMessageEvent{},
+	InboundMessageEventType: api.InboundMessageEvent{},
 }
 
 var messageEventMapping = map[string]interface{}{
-	SendEventType:       SendEvent{},
-	DeferralEventType:   DeferralEvent{},
-	HardBounceEventType: HardBounceEvent{},
-	SoftBounceEventType: SoftBounceEvent{},
-	OpenEventType:       OpenEvent{},
-	ClickEventType:      ClickEvent{},
-	SpamEventType:       SpamEvent{},
-	UnsubEventType:      UnsubEvent{},
-	RejectEventType:     RejectEvent{},
+	SendEventType:           SendEvent{},
+	DeferralEventType:       DeferralEvent{},
+	HardBounceEventType:     HardBounceEvent{},
+	SoftBounceEventType:     SoftBounceEvent{},
+	OpenEventType:           OpenEvent{},
+	ClickEventType:          ClickEvent{},
+	SpamEventType:           SpamEvent{},
+	UnsubEventType:          UnsubEvent{},
+	RejectEventType:         RejectEvent{},
+	InboundMessageEventType: InboundMessageEvent{},
 }
 
 var jsonSyncEventMapping = map[string]interface{}{

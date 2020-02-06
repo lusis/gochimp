@@ -238,20 +238,23 @@ type WhitelistMessageEvent struct {
 type InboundMessageEvent struct {
 	MessageEventJSON
 	Msg struct {
-		RawMsg    string   `json:"raw_msg"`
-		Headers   []string `json:"headers"`
-		Text      string   `json:"text"`
-		HTML      string   `json:"html"`
-		FromEmail string   `json:"from_email"`
-		FromName  string   `json:"from_name"`
-		To        []struct {
-			Email string `json:"email"`
-			Name  string `json:"name"`
-		} `json:"to"`
-		Email       string   `json:"email"`
-		Subject     string   `json:"subject"`
-		Tags        []string `json:"tags"`
-		Sender      string   `json:"sender"`
+		RawMsg string `json:"raw_msg"`
+		DKIM   struct {
+			Signed bool `json:"signed"`
+			Valid  bool `json:"valid"`
+		} `json:"dkim"`
+		Template    string                 `json:"template"`
+		Headers     map[string]interface{} `json:"headers"`
+		Text        string                 `json:"text"`
+		TextFlowed  bool                   `json:"text_flowed"`
+		HTML        string                 `json:"html"`
+		FromEmail   string                 `json:"from_email"`
+		FromName    string                 `json:"from_name"`
+		To          [][]string             `json:"to"`
+		Email       string                 `json:"email"`
+		Subject     string                 `json:"subject"`
+		Tags        []string               `json:"tags"`
+		Sender      string                 `json:"sender"`
 		Attachments []struct {
 			Name    string `json:"name"`
 			Type    string `json:"type"`
@@ -263,22 +266,17 @@ type InboundMessageEvent struct {
 			Type    string `json:"type"`
 			Content string `json:"content"`
 		} `json:"images"`
+		SPF struct {
+			Result string `json:"result"`
+			Detail string `json:"detail"`
+		} `json:"spf"`
 		SpamReport struct {
-			Score        int64 `json:"score"`
+			Score        float64 `json:"score"`
 			MatchedRules []struct {
-				Name        string `json:"name"`
-				Description string `json:"description"`
-				Score       int64  `json:"score"`
-				SPF         struct {
-					Result string `json:"result"`
-					Detail string `json:"detail"`
-				} `json:"spf"`
-
-				DKIM struct {
-					Signed bool `json:"signed"`
-					Valid  bool `json:"valid"`
-				} `json:"dkim"`
+				Name        string  `json:"name"`
+				Description string  `json:"description"`
+				Score       float64 `json:"score"`
 			} `json:"matched_rules"`
-		}
+		} `json:"spam_report"`
 	} `json:"msg"`
 }

@@ -122,5 +122,5 @@ type RejectMsg struct {
 	OpensClicks
 }
 
-// InboundEvent is a message inbound event
-type InboundEvent struct{}
+// InboundMessageEvent is a message inbound event
+type InboundMessageEvent struct{}
