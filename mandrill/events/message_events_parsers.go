@@ -9,6 +9,7 @@ import (
 
 func parseMessageEvent(e WebhookEvent) (MessageEvent, error) {
 	me := MessageEvent{}
+	me.raw = e.raw
 	if e.Type != MessageEventType {
 		return me, InvalidEventType{eventType: e.Type}
 	}

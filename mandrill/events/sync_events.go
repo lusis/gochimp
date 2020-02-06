@@ -11,10 +11,18 @@ import (
 // SyncEvent represents a basic sync event
 type SyncEvent struct {
 	Data interface{}
+	raw  json.RawMessage
+}
+
+// GetRawJSON returns the underlying raw JSON of the original webhook request
+// valuable for debugging and development
+func (s *SyncEvent) GetRawJSON() string {
+	return string(s.raw)
 }
 
 func parseSyncEvent(e WebhookEvent) (SyncEvent, error) {
 	se := SyncEvent{}
+	se.raw = e.raw
 	if e.Type != SyncEventType {
 		return se, InvalidEventType{eventType: e.Type}
 	}

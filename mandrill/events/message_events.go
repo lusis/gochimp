@@ -1,8 +1,17 @@
 package events
 
+import "encoding/json"
+
 // MessageEvent represents a basic sync event
 type MessageEvent struct {
 	Data interface{}
+	raw  json.RawMessage
+}
+
+// GetRawJSON returns the underlying raw JSON of the original webhook request
+// valuable for debugging and development
+func (m *MessageEvent) GetRawJSON() string {
+	return string(m.raw)
 }
 
 // SendEvent is a message send event
