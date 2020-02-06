@@ -331,3 +331,35 @@ func TestParseMessageEventHappyPath(t *testing.T) {
 		})
 	}
 }
+
+// these are test data that I've seen as actual webhooks from Mandrill
+// with data anonymized
+func TestSeenMessageEvents(t *testing.T) {
+	testCases := map[string]struct {
+		data         string
+		inner        string
+		expectedType interface{}
+	}{
+		"send_1": {
+			data:         `{"event":"send","_id":"abcdefg","msg":{"ts":1580940796,"subject":"Your report is complete","email":"recipient@foo.com","tags":[],"opens":[],"clicks":[],"state":"sent","smtp_events":[],"subaccount":null,"resends":[],"reject":null,"_id":"abcdefg","sender":"foo@foo.com","template":"XXXXXX"},"ts":1580940796}`,
+			inner:        SendEventType,
+			expectedType: SendEvent{},
+		},
+	}
+	for name, testCase := range testCases {
+		t.Run(name, func(t *testing.T) {
+			oe := WebhookEvent{
+				Type:           MessageEventType,
+				InnerEventType: testCase.inner,
+				raw:            []byte(testCase.data),
+			}
+			_, ok := messageEventMapping[testCase.inner]
+			require.True(t, ok)
+			res, err := parseMessageEvent(oe)
+			require.NoError(t, err)
+			require.NotNil(t, res)
+			require.NotEmpty(t, res)
+			require.IsType(t, testCase.expectedType, res.Data)
+		})
+	}
+}

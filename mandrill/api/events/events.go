@@ -31,16 +31,23 @@ type SyncEventJSON struct {
 
 // MessageEventMsg represents the Msg field of a MessageEvent
 type MessageEventMsg struct {
-	TS       api.TS                 `json:"ts"`
-	ID       string                 `json:"_id"`
-	Version  string                 `json:"_version"`
-	Subject  string                 `json:"subject"`
-	Email    string                 `json:"email"`
-	Sender   string                 `json:"sender"`
-	Tags     []string               `json:"tags"`
-	State    string                 `json:"state"`
-	MetaData map[string]interface{} `json:"metadata"`
-	Template string                 `json:"template"`
+	TS         api.TS                 `json:"ts"`
+	ID         string                 `json:"_id"`
+	Version    string                 `json:"_version"`
+	Subject    string                 `json:"subject"`
+	Email      string                 `json:"email"`
+	Sender     string                 `json:"sender"`
+	Tags       []string               `json:"tags"`
+	State      string                 `json:"state"`
+	MetaData   map[string]interface{} `json:"metadata"`
+	Template   string                 `json:"template"`
+	SubAccount string                 `json:"subaccount"`
+}
+
+// MessageEventResend represents the resend field of a MessageEvent
+type MessageEventResend struct {
+	TS    api.TS `json:"ts"`
+	Email string `json:"email"`
 }
 
 // MessageSMTPEvent represents the SMTP details of a MessageEvent
@@ -100,8 +107,11 @@ type SendMessageEvent struct {
 	MessageEventJSON
 	Msg struct {
 		MessageEventMsg
-		Opens  []MessageEventOpen  `json:"opens"`
-		Clicks []MessageEventClick `json:"clicks"`
+		Opens      []MessageEventOpen  `json:"opens"`
+		Clicks     []MessageEventClick `json:"clicks"`
+		SMTPEvents []MessageSMTPEvent  `json:"smtp_events"`
+		Resends    []interface{}       `json:"resends"`
+		Reject     []interface{}       `json:"reject"`
 	} `json:"msg"`
 }
 

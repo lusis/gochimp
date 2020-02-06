@@ -15,6 +15,9 @@ type SendEvent struct {
 type SendMsg struct {
 	MsgCommon
 	OpensClicks
+	SMTPEvents []SMTPEvent
+	Resends    []interface{}
+	Reject     []interface{}
 }
 
 // DeferralEvent is a message deferral event

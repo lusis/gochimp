@@ -94,20 +94,32 @@ func (s *SendEvent) parse(e api.SendMessageEvent) {
 	s.Event = e.Event
 	s.Timestamp = e.TS.Time
 	s.ID = e.ID
-	s.Msg = SendMsg{
-		MsgCommon{
-			Timestamp: e.Msg.TS.Time,
-			ID:        e.Msg.ID,
-			Version:   e.Msg.Version,
-			Subject:   e.Msg.Subject,
-			Email:     e.Msg.Email,
-			Sender:    e.Msg.Sender,
-			Tags:      e.Msg.Tags,
-			State:     e.Msg.State,
-			MetaData:  e.Msg.MetaData,
-			Template:  e.Msg.Template,
-		},
-		OpensClicks{},
+	s.Msg = SendMsg{}
+	s.Msg.MsgCommon = MsgCommon{
+		Timestamp: e.Msg.TS.Time,
+		ID:        e.Msg.ID,
+		Version:   e.Msg.Version,
+		Subject:   e.Msg.Subject,
+		Email:     e.Msg.Email,
+		Sender:    e.Msg.Sender,
+		Tags:      e.Msg.Tags,
+		State:     e.Msg.State,
+		MetaData:  e.Msg.MetaData,
+		Template:  e.Msg.Template,
+	}
+
+	s.Msg.OpensClicks = OpensClicks{}
+	s.Msg.Reject = e.Msg.Reject
+	s.Msg.Resends = e.Msg.Resends
+	for _, se := range e.Msg.SMTPEvents {
+		s.Msg.SMTPEvents = append(s.Msg.SMTPEvents, SMTPEvent{
+			Timestamp:     se.TS.Time,
+			DestinationIP: se.DestinationIP,
+			Diag:          se.Diag,
+			SourceIP:      se.SourceIP,
+			Type:          se.Type,
+			Size:          se.Size,
+		})
 	}
 	for _, o := range e.Msg.Opens {
 		s.Msg.Opens = append(s.Msg.Opens, Open{Timestamp: o.TS.Time})
