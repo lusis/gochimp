@@ -12,7 +12,7 @@ type MessagesSendResponse []MessageSendReponse
 type MessagesSendTemplateResponse []MessageSendReponse
 
 type MessagesInfoResponse struct {
-	TS          int32    `json:"ts"`
+	TS          TS       `json:"ts"`
 	ID          string   `json:"_id"`
 	Sender      string   `json:"sender"`
 	Template    string   `json:"template"`
@@ -21,14 +21,14 @@ type MessagesInfoResponse struct {
 	Tags        []string `json:"tags"`
 	Opens       int      `json:"opens"`
 	OpensDetail []struct {
-		TS       int32  `json:"ts"`
+		TS       TS     `json:"ts"`
 		IP       string `json:"ip"`
 		Location string `json:"location"`
 		UA       string `json:"ua"`
 	} `json:"opens_detail"`
 	Clicks       int `json:"clicks"`
 	ClicksDetail []struct {
-		TS       int32  `json:"ts"`
+		TS       TS     `json:"ts"`
 		IP       string `json:"ip"`
 		Location string `json:"location"`
 		UA       string `json:"ua"`
@@ -37,7 +37,7 @@ type MessagesInfoResponse struct {
 	State      string            `json:"state"`
 	MetaData   map[string]string `json:"metadata"`
 	SMTPEvents []struct {
-		TS            int32  `json:"ts"`
+		TS            TS     `json:"ts"`
 		Type          string `json:"type"`
 		Diag          string `json:"diag"`
 		SourceIP      string `json:"source_ip"`
@@ -46,6 +46,41 @@ type MessagesInfoResponse struct {
 	} `json:"smtp_events"`
 }
 
+type WebhookMessageEventInfoResponse struct {
+	TS       TS       `json:"ts"`
+	ID       string   `json:"_id"`
+	Sender   string   `json:"sender"`
+	Template string   `json:"template"`
+	Subject  string   `json:"subject"`
+	Email    string   `json:"email"`
+	Tags     []string `json:"tags"`
+	Opens    []struct {
+		TS       TS     `json:"ts"`
+		IP       string `json:"ip"`
+		Location string `json:"location"`
+		UA       string `json:"ua"`
+	} `json:"opens"`
+	ClicksDetail []struct {
+		TS       TS     `json:"ts"`
+		IP       string `json:"ip"`
+		Location string `json:"location"`
+		UA       string `json:"ua"`
+		URL      string `json:"url"`
+	} `json:"clicks"`
+	State      string            `json:"state"`
+	MetaData   map[string]string `json:"metadata"`
+	SMTPEvents []struct {
+		TS            TS     `json:"ts"`
+		Type          string `json:"type"`
+		Diag          string `json:"diag"`
+		SourceIP      string `json:"source_ip"`
+		DestinationIP string `json:"destination_ip"`
+		Size          int32  `json:"size"`
+	} `json:"smtp_events"`
+	SubAccount        string `json:"subaccount"`
+	Diag              string `json:"diag"`
+	BounceDescription string `json:"bounce_description"`
+}
 type MessagesSearchResponse []MessagesInfoResponse
 
 type MessageTimeSeriesSearchResponse struct {
@@ -64,7 +99,7 @@ type MessageTimeSeriesSearchResponse struct {
 type MessagesSearchTimeSeriesResponse []MessageTimeSeriesSearchResponse
 
 type MessagesContentResponse struct {
-	TS        int32  `json:"ts"`
+	TS        TS     `json:"ts"`
 	ID        string `json:"_id"`
 	FromEmail string `json:"from_email"`
 	FromName  string `json:"from_name"`
@@ -91,7 +126,7 @@ type MessagesContentResponse struct {
 }
 
 type MessagesParseResponse struct {
-	TS        int32  `json:"ts"`
+	TS        TS     `json:"ts"`
 	ID        string `json:"_id"`
 	FromEmail string `json:"from_email"`
 	FromName  string `json:"from_name"`

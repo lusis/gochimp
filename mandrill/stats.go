@@ -1,8 +1,9 @@
 package mandrill
 
 import (
-	"github.com/lusis/gochimp/mandrill/api"
 	"time"
+
+	"github.com/lusis/gochimp/mandrill/api"
 )
 
 // Stats are data about various objects in the api

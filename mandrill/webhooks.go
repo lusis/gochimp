@@ -2,8 +2,9 @@ package mandrill
 
 import (
 	"context"
-	"github.com/lusis/gochimp/mandrill/api"
 	"time"
+
+	"github.com/lusis/gochimp/mandrill/api"
 )
 
 // Webhook represents a Mandrill webhook

@@ -189,7 +189,7 @@ func (c *Client) MessageContentContext(ctx context.Context, id string) (*Content
 		ID:        resp.ID,
 		Text:      resp.Text,
 		HTML:      resp.HTML,
-		Timestamp: time.Unix(int64(resp.TS), 0),
+		Timestamp: resp.TS.Time,
 		FromEmail: resp.FromEmail,
 		FromName:  resp.FromName,
 		Subject:   resp.Subject,
@@ -258,21 +258,21 @@ func (c *Client) MessageInfoContext(ctx context.Context, id string) (*MessageInf
 
 func toMessageInfo(res api.MessagesInfoResponse) MessageInfo {
 	r := MessageInfo{
-		ID:       res.ID,
-		Sender:   res.Sender,
-		Template: res.Template,
-		Subject:  res.Subject,
-		Email:    res.Email,
-		Tags:     res.Tags,
-		State:    res.State,
-		MetaData: res.MetaData,
-		Opens:    res.Opens,
-		Clicks:   res.Clicks,
+		ID:        res.ID,
+		Sender:    res.Sender,
+		Template:  res.Template,
+		Subject:   res.Subject,
+		Email:     res.Email,
+		Tags:      res.Tags,
+		State:     res.State,
+		MetaData:  res.MetaData,
+		Opens:     res.Opens,
+		Clicks:    res.Clicks,
+		Timestamp: res.TS.Time,
 	}
-	r.Timestamp = time.Unix(int64(res.TS), 0)
 	for _, d := range res.OpensDetail {
 		od := ClicksOpensDetail{
-			Timestamp: time.Unix(int64(d.TS), 0),
+			Timestamp: d.TS.Time,
 			IP:        d.IP,
 			UserAgent: d.UA,
 			Location:  d.Location,
@@ -281,7 +281,7 @@ func toMessageInfo(res api.MessagesInfoResponse) MessageInfo {
 	}
 	for _, d := range res.ClicksDetail {
 		cd := ClicksOpensDetail{
-			Timestamp: time.Unix(int64(d.TS), 0),
+			Timestamp: d.TS.Time,
 			IP:        d.IP,
 			UserAgent: d.UA,
 			Location:  d.Location,
@@ -291,7 +291,7 @@ func toMessageInfo(res api.MessagesInfoResponse) MessageInfo {
 	}
 	for _, d := range res.SMTPEvents {
 		se := SMTPEvent{
-			Timestamp:     time.Unix(int64(d.TS), 0),
+			Timestamp:     d.TS.Time,
 			Type:          d.Type,
 			Diag:          d.Diag,
 			SourceIP:      d.SourceIP,
