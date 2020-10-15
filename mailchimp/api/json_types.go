@@ -11,8 +11,14 @@ type Time struct {
 func (t *Time) UnmarshalJSON(data []byte) error {
 	s := string(data)
 	tt, err := time.Parse(`"`+APITimeFormat+`"`, s)
+	if err != nil {
+		tt, err = time.Parse(`"2006-01-02 15:04:05"`, s)
+	}
+	if err != nil {
+		return err
+	}
 	t.Time = tt
-	return err
+	return nil
 }
 
 //APITimeFormat is the format string for time.Format

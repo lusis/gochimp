@@ -66,7 +66,7 @@ type EcommerceStoreInfoResponse struct {
 	Name          string                                `json:"name"`
 	Platform      string                                `json:"platform"`
 	Domain        string                                `json:"domain"`
-	IsSyncing     bool                                  `json:"is_synching"`
+	IsSyncing     bool                                  `json:"is_syncing"`
 	EmailAddress  string                                `json:"email_address"`
 	CurrencyCode  string                                `json:"currency_code"`
 	MoneyFormat   string                                `json:"money_format"`
