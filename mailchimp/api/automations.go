@@ -1,14 +1,14 @@
 package api
 
-// GetAutomationsResponse ...
+// ListAutomationsResponse ...
 // https://mailchimp.com/developer/api/marketing/automation/list-automations/
-type GetAutomationsResponse struct {
-	Automations []GetAutomationInfoResponse `json:"automations"`
-	TotalItems  int32                       `json:"total_items"`
+type ListAutomationsResponse struct {
+	Automations []AutomationInfoResponse `json:"automations"`
+	TotalItems  int32                    `json:"total_items"`
 	CommonResponse
 }
 
-// GetAutomationInfoResponse ...
+// AutomationInfoResponse ...
 // https://mailchimp.com/developer/api/marketing/automation/get-automation-info/
 /*
 {
@@ -90,10 +90,10 @@ type GetAutomationsResponse struct {
   ]
 }
 */
-type GetAutomationInfoResponse struct {
+type AutomationInfoResponse struct {
 	ID              string                             `json:"id"`
-	CreateTime      string                             `json:"create_time"`
-	StartTime       string                             `json:"start_time"`
+	CreateTime      Time                               `json:"create_time"`
+	StartTime       Time                               `json:"start_time"`
 	Status          string                             `json:"status"`
 	EmailsSent      int32                              `json:"emails_sent"`
 	Recipients      AutomationsRecipientsResponse      `json:"recipients"`
@@ -168,4 +168,67 @@ type AutomationsTriggerSettingsResponse struct {
 		} `json:"hours"`
 	}
 	WorkflowEmailsCount int32 `json:"workflow_emails_count"`
+}
+
+// AddAutomationRequest ...
+/*
+{
+  "recipients":
+    {
+      "list_id":"",
+      "store_id":""
+    },
+  "settings":
+    {
+      "from_name":"",
+      "reply_to":""
+    },
+  "trigger_settings":
+    {
+      "workflow_type":""
+    }
+  }
+*/
+type AddAutomationRequest struct {
+	Recipients struct {
+		ListID  string `json:"list_id,omitempty"`
+		StoreID string `json:"store_id,omitempty"`
+	} `json:"recipients"`
+	Settings struct {
+		FromName string `json:"from_name,omitempty"`
+		ReplyTo  string `json:"reply_to,omitempty"`
+	} `json:"settings,omitempty"`
+	TriggerSettings struct {
+		WorkflowType string `json:"workflow_type"`
+	} `json:"trigger_settings"`
+}
+
+// UpdateAutomationRequest ...
+/*
+{
+  "settings":{
+    "title":"",
+    "from_name":"",
+    "reply_to":""
+  },
+  "delay":{
+    "amount":0,
+    "type":"now",
+    "direction":"after",
+    "action":"signup"
+  }
+}
+*/
+type UpdateAutomationRequest struct {
+	Settings struct {
+		Title    string `json:"title,omitempty"`
+		FromName string `json:"from_name,omitempty"`
+		ReplyTo  string `json:"reply_to,omitempty"`
+	} `json:"settings,omitempty"`
+	Delay struct {
+		Amount    int32  `json:"amount,omitempty"`
+		Type      string `json:"type,omitempty"`
+		Direction string `json:"direction,omitempty"`
+		Action    string `json:"action,omitempty"`
+	} `json:"delay,omitempty"`
 }

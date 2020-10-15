@@ -56,9 +56,9 @@ type RootResponse struct {
 	Username        string `json:"username"`
 	AvatarURL       string `json:"avatar_url"`
 	Role            string `json:"role"`
-	MemberSince     string `json:"member_since"`
+	MemberSince     Time   `json:"member_since"`
 	PricingPlanType string `json:"pricing_plan_type"`
-	FirstPayment    string `json:"first_payment"`
+	FirstPayment    Time   `json:"first_payment"`
 	AccountTimezone string `json:"account_timezone"`
 	AccountIndustry string `json:"account_industry"`
 	Contact         struct {
@@ -70,9 +70,10 @@ type RootResponse struct {
 		Zip        string `json:"zip"`
 		Country    string `json:"country"`
 	} `json:"contact"`
-	ProEnabled    bool   `json:"pro_enabled"`
-	LastLogin     string `json:"last_login"`
-	IndustryStats struct {
+	ProEnabled       bool  `json:"pro_enabled"`
+	LastLogin        Time  `json:"last_login"`
+	TotalSubscribers int32 `json:"total_subscribers"`
+	IndustryStats    struct {
 		OpenRate   int32 `json:"open_rate"`
 		BounceRate int32 `json:"bounce_rate"`
 		ClickRate  int32 `json:"click_rate"`

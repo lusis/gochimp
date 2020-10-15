@@ -37,7 +37,7 @@ type ChimpChatterItemResponse struct {
 	Title      string `json:"title"`
 	Message    string `json:"message"`
 	Type       string `json:"type"`
-	UpdateTime string `json:"update_time"`
+	UpdateTime Time   `json:"update_time"`
 	URL        string `json:"url"`
 	ListID     string `json:"list_id"`
 	CampaignID string `json:"campaign_id"`

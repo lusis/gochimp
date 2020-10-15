@@ -26,7 +26,7 @@ type VerifiedDomainInfoResponse struct {
 	Verified          bool   `json:"verified"`
 	Authenticated     bool   `json:"authenticated"`
 	VerificationEmail string `json:"verification_email"`
-	VerificationSent  string `json:"verification_sent"`
+	VerificationSent  Time   `json:"verification_sent"`
 }
 
 // AddVerifiedDomainRequest ...
