@@ -5,6 +5,12 @@ type CommonResponse struct {
 	Links []LinkResponse `json:"_links"`
 }
 
+// CommonCollectionResponse ...
+type CommonCollectionResponse struct {
+	TotalItems int32 `json:"total_items"`
+	CommonResponse
+}
+
 // CommonAddressResponse ...
 /*
 these are fields common to all address structs
