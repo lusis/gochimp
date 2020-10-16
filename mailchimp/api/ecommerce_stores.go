@@ -211,6 +211,7 @@ type EcommerceUpdateStoreRequest struct {
 	https://mailchimp.com/developer/api/marketing/ecommerce-stores/list-stores/
 */
 type EcommerceListStoresResponse struct {
-	Stores []EcommerceStoreInfoResponse `json:"stores"`
+	Stores     []EcommerceStoreInfoResponse `json:"stores"`
+	TotalItems int32                        `json:"total_items"`
 	CommonResponse
 }
