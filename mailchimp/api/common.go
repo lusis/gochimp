@@ -26,6 +26,21 @@ type CommonAddressResponse struct {
 	CountryCode  string `json:"country_code"`
 }
 
+// CommonAddressDetailResponse ...
+type CommonAddressDetailResponse struct {
+	CommonAddressResponse
+	Longitude float64 `json:"longitude"`
+	Latitude  float64 `json:"latitude"`
+}
+
+// CommonCompanyAddressResponse ...
+type CommonCompanyAddressResponse struct {
+	Name    string `json:"name"`
+	Company string `json:"company"`
+	Phone   string `json:"phone"`
+	CommonAddressDetailResponse
+}
+
 // CommonAddressRequest ...
 type CommonAddressRequest struct {
 	AddressOne   string `json:"address1,omitempty"`
@@ -36,3 +51,13 @@ type CommonAddressRequest struct {
 	Country      string `json:"country,omitempty"`
 	CountryCode  string `json:"country_code,omitempty"`
 }
+
+// CommonAddressDetailRequest ...
+type CommonAddressDetailRequest struct {
+	CommonAddressRequest
+	Longitude float64 `json:"longitude,omitempty"`
+	Latitude  float64 `json:"latitude,omitempty"`
+}
+
+// EmptyResponse ...
+type EmptyResponse struct{}

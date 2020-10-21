@@ -1,26 +1,7 @@
 package api
 
 // CartLineItemInfoResponse ...
-/*
-{
-  "id": "string",
-  "product_id": "string",
-  "product_title": "string",
-  "product_variant_id": "string",
-  "product_variant_title": "string",
-  "quantity": 0,
-  "price": 0,
-  "_links": [
-    {
-      "rel": "string",
-      "href": "string",
-      "method": "GET",
-      "targetSchema": "string",
-      "schema": "string"
-    }
-  ]
-}
-*/
+// https://mailchimp.com/developer/api/marketing/ecommerce-cart-lines/get-cart-line-item/
 type CartLineItemInfoResponse struct {
 	ID                  string  `json:"id"`
 	ProductID           string  `json:"product_id"`
@@ -33,51 +14,16 @@ type CartLineItemInfoResponse struct {
 }
 
 // ListCartLineItemsResponse ...
-/*
-{
-  "store_id": "string",
-  "cart_id": "string",
-  "lines": [
-    {
-      "id": "string",
-      "product_id": "string",
-      "product_title": "string",
-      "product_variant_id": "string",
-      "product_variant_title": "string",
-      "quantity": 0,
-      "price": 0,
-      "_links": [
-        {
-          "rel": "string",
-          "href": "string",
-          "method": "GET",
-          "targetSchema": "string",
-          "schema": "string"
-        }
-      ]
-    }
-  ],
-  "total_items": 0,
-  "_links": [
-    {
-      "rel": "string",
-      "href": "string",
-      "method": "GET",
-      "targetSchema": "string",
-      "schema": "string"
-    }
-  ]
-}
-*/
+// https://mailchimp.com/developer/api/marketing/ecommerce-cart-lines/list-cart-line-items/
 type ListCartLineItemsResponse struct {
-	StoreID    string                     `json:"store_id"`
-	CartID     string                     `json:"cart_id"`
-	Lines      []CartLineItemInfoResponse `json:"lines"`
-	TotalItems int32                      `json:"total_items"`
-	CommonResponse
+	StoreID string                     `json:"store_id"`
+	CartID  string                     `json:"cart_id"`
+	Lines   []CartLineItemInfoResponse `json:"lines"`
+	CommonCollectionResponse
 }
 
 // AddCartLineItemRequest ...
+// https://mailchimp.com/developer/api/marketing/ecommerce-cart-lines/add-cart-line-item/
 type AddCartLineItemRequest struct {
 	ID               string  `json:"id"`
 	ProductID        string  `json:"product_id"`
@@ -86,7 +32,7 @@ type AddCartLineItemRequest struct {
 	Price            float32 `json:"price"`
 }
 
-// AddCarLineItemResponse ...
+// AddCartLineItemResponse ...
 type AddCartLineItemResponse CartLineItemInfoResponse
 
 // UpdateCartLineItemRequest ...
@@ -97,3 +43,9 @@ type UpdateCartLineItemRequest struct {
 	Quantity         int32   `json:"quantity,omitempty"`
 	Price            float32 `json:"price,omitempty"`
 }
+
+// UpdateCartLineItemResponse ...
+type UpdateCartLineItemResponse CartLineItemInfoResponse
+
+// DeleteCartLineItemResponse ...
+type DeleteCartLineItemResponse EmptyResponse

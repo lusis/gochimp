@@ -111,6 +111,7 @@ type ListCustomersResponse struct {
 }
 
 // AddCustomerRequest ...
+// https://mailchimp.com/developer/api/marketing/ecommerce-customers/add-customer/
 /*
 {
   "id":"",
@@ -144,7 +145,23 @@ type AddCustomerRequest struct {
 // AddCustomerResponse ...
 type AddCustomerResponse CustomerInfoResponse
 
+// AddOrUpdateCustomerRequest ...
+// https://mailchimp.com/developer/api/marketing/ecommerce-customers/add-or-update-customer/
+type AddOrCustomerRequest struct {
+	ID           string               `json:"id"`
+	EmailAddress string               `json:"email_address"`
+	OptInStatus  bool                 `json:"opt_in_status"`
+	Company      string               `json:"company,omitempty"`
+	FirstName    string               `json:"first_name,omitempty"`
+	LastName     string               `json:"last_name,omit_empty"`
+	Address      CommonAddressRequest `json:"address,omitempty"`
+}
+
+// AddOrUpdateCustomerResponse ...
+type AddOrUpdateCustomerResponse CustomerInfoResponse
+
 // UpdateCustomerRequest ...
+// https://mailchimp.com/developer/api/marketing/ecommerce-customers/update-customer/
 type UpdateCustomerRequest struct {
 	OptInStatus bool                 `json:"opt_in_status,omitempty"`
 	Company     string               `json:"company,omitempty"`
@@ -155,3 +172,6 @@ type UpdateCustomerRequest struct {
 
 // UpdateCustomerResponse ...
 type UpdateCustomerResponse CustomerInfoResponse
+
+// DeleteCustomerResponse ...
+type DeleteCustomerResponse EmptyResponse
