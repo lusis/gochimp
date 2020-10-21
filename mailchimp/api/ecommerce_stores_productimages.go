@@ -1,6 +1,7 @@
 package api
 
 // ProductImageInfoResponse ...
+// https://mailchimp.com/developer/api/marketing/ecommerce-product-images/get-product-image-info/
 type ProductImageInfoResponse struct {
 	ID         string   `json:"id"`
 	URL        string   `json:"url"`
@@ -10,54 +11,34 @@ type ProductImageInfoResponse struct {
 
 // ListProductImageInfoResponse ...
 // https://mailchimp.com/developer/api/marketing/ecommerce-product-images/list-product-images/
-/*
-{
-  "store_id": "string",
-  "product_id": "string",
-  "images": [
-    {
-      "id": "string",
-      "url": "string",
-      "variant_ids": [
-        "string"
-      ],
-      "_links": [
-        {
-          "rel": "string",
-          "href": "string",
-          "method": "GET",
-          "targetSchema": "string",
-          "schema": "string"
-        }
-      ]
-    }
-  ],
-  "total_items": 0,
-  "_links": [
-    {
-      "rel": "string",
-      "href": "string",
-      "method": "GET",
-      "targetSchema": "string",
-      "schema": "string"
-    }
-  ]
-}
-*/
 type ListProductImageInfoResponse struct {
-	StoreID    string                     `json:"store_id"`
-	ProductID  string                     `json:"product_id"`
-	Images     []ProductImageInfoResponse `json:"images"`
-	TotalItems int32                      `json:"total_items"`
-	CommonResponse
+	StoreID   string                     `json:"store_id"`
+	ProductID string                     `json:"product_id"`
+	Images    []ProductImageInfoResponse `json:"images"`
+	CommonCollectionResponse
 }
 
 // AddProductImageRequest ...
-/*
-{"id":"","url":"","variant_ids":[]}
-*/
+// https://mailchimp.com/developer/api/marketing/ecommerce-product-images/add-product-image/
 type AddProductImageRequest struct {
 	ID         string   `json:"id"`
 	URL        string   `json:"url"`
 	VariantIDs []string `json:"variant_ids,omitempty"`
 }
+
+// AddProductImageResponse ...
+type AddProductImageResponse ProductImageInfoResponse
+
+// UpdateProductImageRequest ...
+// https://mailchimp.com/developer/api/marketing/ecommerce-product-images/update-product-image/
+type UpdateProductImageRequest struct {
+	ID         string   `json:"id,omitempty"`
+	URL        string   `json:"url,omitempty"`
+	VariantIDs []string `json:"variant_ids,omitempty"`
+}
+
+// UpdateProductImageResponse ...
+type UpdateProductImageResponse ProductImageInfoResponse
+
+// DeleteProductImageResponse ...
+type DeleteProductImageResponse EmptyResponse

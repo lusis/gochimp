@@ -1,26 +1,7 @@
 package api
 
 // PromoCodeInfoResponse ...
-/*
-{
-  "id": "string",
-  "code": "summersale",
-  "redemption_url": "A url that applies promo code directly at checkout or a url that points to sale page or store url",
-  "usage_count": 0,
-  "enabled": "true",
-  "created_at_foreign": "2019-08-24T14:15:22Z",
-  "updated_at_foreign": "2019-08-24T14:15:22Z",
-  "_links": [
-    {
-      "rel": "string",
-      "href": "string",
-      "method": "GET",
-      "targetSchema": "string",
-      "schema": "string"
-    }
-  ]
-}
-*/
+// https://mailchimp.com/developer/api/marketing/ecommerce-promo-codes/get-promo-code/
 type PromoCodeInfoResponse struct {
 	ID               string `json:"id"`
 	Code             string `json:"code"`
@@ -33,43 +14,41 @@ type PromoCodeInfoResponse struct {
 }
 
 // ListPromoCodesResponse ...
-/*
-{
-  "store_id": "string",
-  "promo_codes": [
-    {
-      "id": "string",
-      "code": "summersale",
-      "redemption_url": "A url that applies promo code directly at checkout or a url that points to sale page or store url",
-      "usage_count": 0,
-      "enabled": "true",
-      "created_at_foreign": "2019-08-24T14:15:22Z",
-      "updated_at_foreign": "2019-08-24T14:15:22Z",
-      "_links": [
-        {
-          "rel": "string",
-          "href": "string",
-          "method": "GET",
-          "targetSchema": "string",
-          "schema": "string"
-        }
-      ]
-    }
-  ],
-  "total_items": 0,
-  "_links": [
-    {
-      "rel": "string",
-      "href": "string",
-      "method": "GET",
-      "targetSchema": "string",
-      "schema": "string"
-    }
-  ]
-}
-*/
+// https://mailchimp.com/developer/api/marketing/ecommerce-promo-codes/list-promo-codes/
 type ListPromoCodesResponse struct {
 	StoreID    string                  `json:"store_id"`
 	PromoCodes []PromoCodeInfoResponse `json:"promo_codes"`
 	CommonCollectionResponse
 }
+
+// AddPromoCodeRequest ...
+// https://mailchimp.com/developer/api/marketing/ecommerce-promo-codes/add-promo-code/
+// {"id":"","code":"","redemption_url":"","usage_count":0,"enabled":false,"created_at_foreign":"","updated_at_foreign":""}
+type AddPromoCodeRequest struct {
+	ID               string `json:"id"`
+	Code             string `json:"code"`
+	RedemptionURL    string `json:"redemption_url"`
+	UsageCount       int32  `json:"usage_count,omitempty"`
+	Enabled          bool   `json:"enabled,omitempty"`
+	CreatedAtForeign Time   `json:"created_at_foreign,omitempty"`
+	UpdatedAtForeign Time   `json:"updated_at_foreign,omitempty"`
+}
+
+// AddPromoCodeResponse ...
+type AddPromoCodeResponse PromoCodeInfoResponse
+
+// UpdatePromoCodeRequest ...
+type UpdatePromoCodeRequest struct {
+	Code             string `json:"code,omitempty"`
+	RedemptionURL    string `json:"redemption_url,omitempty"`
+	UsageCount       int32  `json:"usage_count,omitempty"`
+	Enabled          bool   `json:"enabled,omitempty"`
+	CreatedAtForeign Time   `json:"created_at_foreign"`
+	UpdatedAtForeign Time   `json:"updated_at_foreign"`
+}
+
+// UpdatePromoCodeResponse ...
+type UpdatePromoCodeResponse PromoCodeInfoResponse
+
+// DeletePromoCodeResponse ...
+type DeletePromoCodeResponse EmptyResponse

@@ -52,14 +52,71 @@ type ListOrdersResponse struct {
 
 // AddOrderRequest ...
 // https://mailchimp.com/developer/api/marketing/ecommerce-orders/add-order/
-type AddOrderRequest struct{}
+type AddOrderRequest struct {
+	ID                 string                         `json:"id"`
+	Customer           AddCustomerRequest             `json:"customer"`
+	CurrencyCode       string                         `json:"currency_code"`
+	OrderTotal         float32                        `json:"order_total"`
+	Lines              []AddOrderLineItemRequest      `json:"lines"`
+	CampaignID         string                         `json:"campaign_id,omitempty"`
+	LandingSite        string                         `json:"landing_site,omitempty"`
+	FinancialStatus    string                         `json:"financial_status,omitempty"`
+	FullfillmentStatus string                         `json:"fullfillment_status,omitempty"`
+	OrderURL           string                         `json:"order_url,omitempty"`
+	DiscountTotal      float32                        `json:"discount_total,omitempty"`
+	TaxTotal           float32                        `json:"tax_total,omitempty"`
+	ShippingTotal      float32                        `json:"shipping_total,omitempty"`
+	TrackingCode       string                         `json:"tracking_code,omitempty"`
+	ProcessedAtForeign Time                           `json:"processed_at_foreign,omitempty"`
+	CancelledAtForeign Time                           `json:"cancelled_at_foreign,omitempty"`
+	UpdatedAtForeign   Time                           `json:"updated_at_foreign,omitempty"`
+	ShippingAddress    CommonCompanyAddressRequest    `json:"shipping_address,omitempty"`
+	BillingAddress     CommonCompanyAddressRequest    `json:"billing_address,omitempty"`
+	Promos             []AddOrderPromoCodeItemRequest `json:"promos,omitempty"`
+	Outreach           []string                       `json:"outreach,omitempty"`
+}
+
+// AddOrderPromoCodeItemRequest ...
+type AddOrderPromoCodeItemRequest struct {
+	Code             string  `json:"code,omitempty"`
+	Type             string  `json:"type,omitempty"`
+	AmountDiscounted float32 `json:"amount_discounted,omitempty"`
+}
 
 // AddOrderResponse ...
 type AddOrderResponse OrderInfoResponse
 
 // UpdateOrderRequest ...
 // https://mailchimp.com/developer/api/marketing/ecommerce-orders/update-order/
-type UpdateOrderRequest struct{}
+type UpdateOrderRequest struct {
+	Customer           UpdateCustomerRequest             `json:"customer,omitempty"`
+	CurrencyCode       string                            `json:"currency_code,omitempty"`
+	OrderTotal         float32                           `json:"order_total,omitempty"`
+	Lines              []UpdateOrderLineItemRequest      `json:"lines,omitempty"`
+	CampaignID         string                            `json:"campaign_id,omitempty"`
+	LandingSite        string                            `json:"landing_site,omitempty"`
+	FinancialStatus    string                            `json:"financial_status,omitempty"`
+	FullfillmentStatus string                            `json:"fullfillment_status,omitempty"`
+	OrderURL           string                            `json:"order_url,omitempty"`
+	DiscountTotal      float32                           `json:"discount_total,omitempty"`
+	TaxTotal           float32                           `json:"tax_total,omitempty"`
+	ShippingTotal      float32                           `json:"shipping_total,omitempty"`
+	TrackingCode       string                            `json:"tracking_code,omitempty"`
+	ProcessedAtForeign Time                              `json:"processed_at_foreign,omitempty"`
+	CancelledAtForeign Time                              `json:"cancelled_at_foreign,omitempty"`
+	UpdatedAtForeign   Time                              `json:"updated_at_foreign,omitempty"`
+	ShippingAddress    CommonCompanyAddressRequest       `json:"shipping_address,omitempty"`
+	BillingAddress     CommonCompanyAddressRequest       `json:"billing_address,omitempty"`
+	Promos             []UpdateOrderPromoCodeItemRequest `json:"promos,omitempty"`
+	Outreach           []string                          `json:"outreach,omitempty"`
+}
+
+// UpdateOrderPromoCodeItemRequest ...
+type UpdateOrderPromoCodeItemRequest struct {
+	Code             string  `json:"code,omitempty"`
+	Type             string  `json:"type,omitempty"`
+	AmountDiscounted float32 `json:"amount_discounted,omitempty"`
+}
 
 // UpdateOrderResponse ...
 type UpdateOrderResponse OrderInfoResponse

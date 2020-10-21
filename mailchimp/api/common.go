@@ -22,6 +22,7 @@ type CommonAddressResponse struct {
 	City         string `json:"city"`
 	Province     string `json:"province"`
 	ProvinceCode string `json:"province_code"`
+	PostalCode   string `json:"postal_code"`
 	Country      string `json:"country"`
 	CountryCode  string `json:"country_code"`
 }
@@ -48,8 +49,17 @@ type CommonAddressRequest struct {
 	City         string `json:"city,omitempty"`
 	Province     string `json:"province,omitempty"`
 	ProvinceCode string `json:"province_code,omitempty"`
+	PostalCode   string `json:"postal_code,omitempty"`
 	Country      string `json:"country,omitempty"`
 	CountryCode  string `json:"country_code,omitempty"`
+}
+
+// CommonCompanyAddressRequest ...
+type CommonCompanyAddressRequest struct {
+	Name    string `json:"name"`
+	Company string `json:"company"`
+	Phone   string `json:"phone"`
+	CommonAddressDetailRequest
 }
 
 // CommonAddressDetailRequest ...
