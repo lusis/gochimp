@@ -25,3 +25,14 @@ type CommonAddressResponse struct {
 	Country      string `json:"country"`
 	CountryCode  string `json:"country_code"`
 }
+
+// CommonAddressRequest ...
+type CommonAddressRequest struct {
+	AddressOne   string `json:"address1,omitempty"`
+	AddressTwo   string `json:"address2,omitempty"`
+	City         string `json:"city,omitempty"`
+	Province     string `json:"province,omitempty"`
+	ProvinceCode string `json:"province_code,omitempty"`
+	Country      string `json:"country,omitempty"`
+	CountryCode  string `json:"country_code,omitempty"`
+}

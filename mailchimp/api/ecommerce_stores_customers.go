@@ -109,3 +109,49 @@ type ListCustomersResponse struct {
 	TotalItems int32                  `json:"total_items"`
 	CommonResponse
 }
+
+// AddCustomerRequest ...
+/*
+{
+  "id":"",
+  "email_address":"",
+  "opt_in_status":false,
+  "company":"",
+  "first_name":"",
+  "last_name":"",
+  "address":{
+    "address1":"",
+    "address2":"",
+    "city":"",
+    "province":"",
+    "province_code":"",
+    "postal_code":"",
+    "country":"",
+    "country_code":""
+  }
+}
+*/
+type AddCustomerRequest struct {
+	ID           string               `json:"id"`
+	EmailAddress string               `json:"email_address"`
+	OptInStatus  bool                 `json:"opt_in_status"`
+	Company      string               `json:"company,omitempty"`
+	FirstName    string               `json:"first_name,omitempty"`
+	LastName     string               `json:"last_name,omit_empty"`
+	Address      CommonAddressRequest `json:"address,omitempty"`
+}
+
+// AddCustomerResponse ...
+type AddCustomerResponse CustomerInfoResponse
+
+// UpdateCustomerRequest ...
+type UpdateCustomerRequest struct {
+	OptInStatus bool                 `json:"opt_in_status,omitempty"`
+	Company     string               `json:"company,omitempty"`
+	FirstName   string               `json:"first_name,omitempty"`
+	LastName    string               `json:"last_name,omit_empty"`
+	Address     CommonAddressRequest `json:"address,omitempty"`
+}
+
+// UpdateCustomerResponse ...
+type UpdateCustomerResponse CustomerInfoResponse

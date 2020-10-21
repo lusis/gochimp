@@ -76,3 +76,24 @@ type ListCartLineItemsResponse struct {
 	TotalItems int32                      `json:"total_items"`
 	CommonResponse
 }
+
+// AddCartLineItemRequest ...
+type AddCartLineItemRequest struct {
+	ID               string  `json:"id"`
+	ProductID        string  `json:"product_id"`
+	ProductVariantID string  `json:"product_variant_id"`
+	Quantity         int32   `json:"quantity"`
+	Price            float32 `json:"price"`
+}
+
+// AddCarLineItemResponse ...
+type AddCartLineItemResponse CartLineItemInfoResponse
+
+// UpdateCartLineItemRequest ...
+// https://mailchimp.com/developer/api/marketing/ecommerce-cart-lines/update-cart-line-item/
+type UpdateCartLineItemRequest struct {
+	ProductID        string  `json:"product_id,omitempty"`
+	ProductVariantID string  `json:"product_variant_id,omitempty"`
+	Quantity         int32   `json:"quantity,omitempty"`
+	Price            float32 `json:"price,omitempty"`
+}

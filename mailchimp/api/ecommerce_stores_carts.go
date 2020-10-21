@@ -180,3 +180,61 @@ type ListCartsResponse struct {
 	Carts   []CartInfoResponse `json:"carts"`
 	CommonCollectionResponse
 }
+
+// AddCartRequest ...
+/*
+{
+  "id":"",
+  "customer":{
+    "id":"",
+    "email_address":"",
+    "opt_in_status":false,
+    "company":"",
+    "first_name":"",
+    "last_name":"",
+    "address":{
+      "address1":"",
+      "address2":"",
+      "city":"",
+      "province":"",
+      "province_code":"",
+      "postal_code":"",
+      "country":"",
+      "country_code":""
+    }
+  },
+  "campaign_id":"",
+  "checkout_url":"",
+  "currency_code":"",
+  "order_total":0,
+  "tax_total":0,
+  "lines":[]
+}
+*/
+type AddCartRequest struct {
+	ID           string                   `json:"id"`
+	Customer     AddCustomerRequest       `json:"customer"`
+	CurrencyCode string                   `json:"currency_code"`
+	OrderTotal   float32                  `json:"order_total"`
+	CampaignID   string                   `json:"campaign_id,omitempty"`
+	CheckoutURL  string                   `json:"checkout_url,omitempty"`
+	TaxTotal     float32                  `json:"tax_total,omitempty"`
+	Lines        []AddCartLineItemRequest `json:"lines"`
+}
+
+// AddCartResponse ...
+type AddCartResponse CartInfoResponse
+
+// UpdateCartRequest ...
+type UpdateCartRequest struct {
+	Customer     UpdateCustomerRequest       `json:"customer,omitempty"`
+	CurrencyCode string                      `json:"currency_code,omitempty"`
+	OrderTotal   float32                     `json:"order_total,omitempty"`
+	CampaignID   string                      `json:"campaign_id,omitempty"`
+	CheckoutURL  string                      `json:"checkout_url,omitempty"`
+	TaxTotal     float32                     `json:"tax_total,omitempty"`
+	Lines        []UpdateCartLineItemRequest `json:"lines,omitempty"`
+}
+
+// UpdateCartResponse ...
+type UpdateCartResponse CartInfoResponse
