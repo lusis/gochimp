@@ -1,26 +1,16 @@
 package api
 
-// VerifiedDomainsResponse ...
-/*
-{
-  "domains": [
-    {
-      "domain": "string",
-      "verified": true,
-      "authenticated": true,
-      "verification_email": "string",
-      "verification_sent": "2019-08-24T14:15:22Z"
-    }
-  ],
-  "total_items": 0
-}
-*/
-type VerifiedDomainsResponse struct {
-	Domains    []VerifiedDomainInfoResponse `json:"domains"`
-	TotalItems int32                        `json:"total_items"`
+// https://mailchimp.com/developer/api/marketing/verified-domains/
+
+// ListVerifiedDomainsResponse ...
+// https://mailchimp.com/developer/api/marketing/verified-domains/list-sending-domains/
+type ListVerifiedDomainsResponse struct {
+	Domains []VerifiedDomainInfoResponse `json:"domains"`
+	CommonCollectionResponse
 }
 
 // VerifiedDomainInfoResponse ...
+// https://mailchimp.com/developer/api/marketing/verified-domains/get-domain-info/
 type VerifiedDomainInfoResponse struct {
 	Domain            string `json:"domain"`
 	Verified          bool   `json:"verified"`
@@ -46,3 +36,6 @@ type VerifyDomainRequest struct {
 
 // VerifyDomainResponse ...
 type VerifyDomainResponse VerifiedDomainInfoResponse
+
+// DeleteVerifiedDomainResponse ..
+type DeleteVerifiedDomainResponse EmptyResponse
